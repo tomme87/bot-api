@@ -1,0 +1,11 @@
+version: '3.5'
+services:
+  adminmongo:
+    image: mrvautin/adminmongo
+    ports:
+      - 7070:7070
+    environment:
+      - HOST=0.0.0.0
+      - PORT=7070
+      - CONN_NAME=bot-api
+      - DB_HOST=db

@@ -1,0 +1,39 @@
+version: '3.5'
+
+services:
+  db:
+    image: mongo:4
+    ports:
+      - '27017:27017'
+    volumes:
+      - 'mongodb:/data/db'
+  php:
+    build: php-fpm
+    env_file:
+      - "php-fpm/.env"
+    ports:
+      - '${PHP_CONTAINER_PORT}:9002'
+    volumes:
+      - '../:/var/www/symfony:cached'
+      - './logs/symfony:/var/www/symfony/var/log:cached'
+      - './logs/xdebug:/var/log/xdebug:cached'
+      - './php-fpm/99-xdebug.template:/tmp/99-xdebug.template'
+    links:
+      - db
+    command: /bin/bash -c "envsubst < /tmp/99-xdebug.template > /usr/local/etc/php/conf.d/99-xdebug.ini && php-fpm"
+  nginx:
+    build: nginx
+    env_file:
+      - 'nginx/.env'
+    ports:
+      - '${NGINX_CONTAINER_PORT}:80'
+    links:
+      - php
+    volumes:
+      - '../:/var/www/symfony:cached'
+      - './logs/nginx:/var/log/nginx:cached'
+      - './nginx/symfony.conf.template:/etc/nginx/conf.d/symfony.conf.template'
+    command: /bin/bash -c "envsubst < /etc/nginx/conf.d/symfony.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+volumes:
+  mongodb:
+    driver: local

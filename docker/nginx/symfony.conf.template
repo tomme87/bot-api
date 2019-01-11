@@ -1,0 +1,39 @@
+server {
+  listen ${SERVER_PORT};
+
+  server_name ${SERVER_NAME};
+
+  root /var/www/symfony/public;
+
+  location / {
+    try_files ${DOLLAR}uri @rewriteapp;
+  }
+
+  location @rewriteapp {
+    rewrite ^(.*)$ /index.php/$1 last;
+  }
+
+  location ~* /favicon(.*) {
+    log_not_found off;
+    access_log off;
+    root /var/www/symfony/public;
+  }
+
+  location = /favicon.ico {
+    return 404;
+  }
+
+  location ~ ^/index\.php(/|$) {
+    fastcgi_pass php:9000;
+    fastcgi_split_path_info ^(.+\.php)(/.*)$;
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME ${DOLLAR}document_root${DOLLAR}fastcgi_script_name;
+    fastcgi_param HTTPS off;
+
+    fastcgi_buffers 16 16k;
+    fastcgi_buffer_size 32k;
+  }
+
+  error_log /var/log/nginx/symfony_error.log;
+  access_log /var/log/nginx/symfony_access.log;
+}
