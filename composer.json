@@ -6,14 +6,20 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "alcaeus/mongo-php-adapter": "^1.1",
+        "defuse/php-encryption": "^2.2",
         "doctrine/mongodb-odm-bundle": "^3.5",
+        "league/oauth2-server": "^7.3",
+        "phpseclib/phpseclib": "~2.0",
+        "sensio/framework-extra-bundle": "^5.2",
         "symfony/console": "4.2.*",
         "symfony/dotenv": "4.2.*",
         "symfony/flex": "^1.1",
         "symfony/framework-bundle": "4.2.*",
+        "symfony/psr-http-message-bridge": "^1.1",
         "symfony/security-bundle": "4.2.*",
         "symfony/yaml": "4.2.*",
-        "web-token/jwt-bundle": "^1.3"
+        "web-token/jwt-bundle": "^1.3",
+        "zendframework/zend-diactoros": "^1.8"
     },
     "config": {
         "preferred-install": {

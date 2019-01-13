@@ -2,6 +2,9 @@
     "alcaeus/mongo-php-adapter": {
         "version": "1.1.5"
     },
+    "defuse/php-encryption": {
+        "version": "v2.2.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -56,8 +59,20 @@
     "fgrosse/phpasn1": {
         "version": "v2.1.1"
     },
+    "lcobucci/jwt": {
+        "version": "3.2.5"
+    },
+    "league/event": {
+        "version": "2.2.0"
+    },
+    "league/oauth2-server": {
+        "version": "7.3.2"
+    },
     "mongodb/mongodb": {
         "version": "1.4.2"
+    },
+    "phpseclib/phpseclib": {
+        "version": "2.0.13"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -65,11 +80,23 @@
     "psr/container": {
         "version": "1.0.0"
     },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/log": {
         "version": "1.1.0"
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "sensio/framework-extra-bundle": {
+        "version": "5.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.2",
+            "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
+        }
     },
     "spomky-labs/base64url": {
         "version": "v2.0.1"
@@ -149,6 +176,9 @@
     "symfony/property-access": {
         "version": "v4.2.2"
     },
+    "symfony/psr-http-message-bridge": {
+        "version": "v1.1.0"
+    },
     "symfony/routing": {
         "version": "4.2",
         "recipe": {
@@ -190,5 +220,8 @@
     },
     "web-token/jwt-core": {
         "version": "v1.3.0"
+    },
+    "zendframework/zend-diactoros": {
+        "version": "1.8.6"
     }
 }
