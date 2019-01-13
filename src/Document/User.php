@@ -3,7 +3,6 @@
 
 namespace App\Document;
 
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
@@ -29,13 +28,6 @@ class User {
   private $username;
 
   /**
-   * @var Collection<Application>
-   *
-   * @MongoDB\ReferenceMany(targetDocument="Application")
-   */
-  private $applications;
-
-  /**
    * @return string
    */
   public function getId(): string {
@@ -54,20 +46,6 @@ class User {
    */
   public function setUsername(string $username): void {
     $this->username = $username;
-  }
-
-  /**
-   * @return Collection
-   */
-  public function getApplications(): Collection {
-    return $this->applications;
-  }
-
-  /**
-   * @param Collection $applications
-   */
-  public function setApplications(Collection $applications): void {
-    $this->applications = $applications;
   }
 
 }

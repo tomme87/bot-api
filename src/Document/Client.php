@@ -3,22 +3,18 @@
 
 namespace App\Document;
 
+use App\Traits\DocumentIdentifierTrait;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use League\OAuth2\Server\Entities\ClientEntityInterface;
 
 /**
- * Class Application
+ * Class Client
  * @package App\Document
  *
- * @MongoDB\Document()
+ * @MongoDB\Document(repositoryClass="App\Repository\ClientDoctrineODMRepository")
  */
-class Application {
-
-  /**
-   * @var string
-   *
-   * @MongoDB\Id()
-   */
-  private $id;
+class Client implements ClientEntityInterface {
+  use DocumentIdentifierTrait;
 
   /**
    * @var string
@@ -32,7 +28,7 @@ class Application {
    *
    * @MongoDB\Field(type="string")
    */
-  private $clientID;
+  private $redirectUri;
 
   /**
    * @var string
@@ -40,27 +36,6 @@ class Application {
    * @MongoDB\Field(type="string")
    */
   private $clientSecret;
-
-  /**
-   * @var User
-   *
-   * @MongoDB\ReferenceOne(targetDocument="User")
-   */
-  private $user;
-
-  /**
-   * @return string
-   */
-  public function getId(): string {
-    return $this->id;
-  }
-
-  /**
-   * @param string $id
-   */
-  public function setId(string $id): void {
-    $this->id = $id;
-  }
 
   /**
    * @return string
@@ -79,15 +54,15 @@ class Application {
   /**
    * @return string
    */
-  public function getClientID(): string {
-    return $this->clientID;
+  public function getRedirectUri(): string {
+    return $this->redirectUri;
   }
 
   /**
-   * @param string $clientID
+   * @param string $redirectUri
    */
-  public function setClientID(string $clientID): void {
-    $this->clientID = $clientID;
+  public function setRedirectUri(string $redirectUri): void {
+    $this->redirectUri = $redirectUri;
   }
 
   /**
@@ -102,20 +77,6 @@ class Application {
    */
   public function setClientSecret(string $clientSecret): void {
     $this->clientSecret = $clientSecret;
-  }
-
-  /**
-   * @return User
-   */
-  public function getUser(): User {
-    return $this->user;
-  }
-
-  /**
-   * @param User $user
-   */
-  public function setUser(User $user): void {
-    $this->user = $user;
   }
 
 }
